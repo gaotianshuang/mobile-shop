@@ -2,9 +2,6 @@
 	clear: both;
 }
 
-#input-message {
-	/*font-size: 30px;*/
-}
 
 .chat-div {
 	width: 100%;
@@ -95,13 +92,14 @@
 }
 
 .send-div {
-	width: 11%;
-	height: 53px;
-	margin-top: 2%;
+	margin-top: 6%;
+	margin-left: 45%;
 }
-
+#input-tel{
+	width: 50%;
+}
 #input-message {
-	width: 100%;
+	width: 50%;
 }
 
 .send-div>input {
