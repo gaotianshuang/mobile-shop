@@ -31,9 +31,11 @@
     <link rel="canonical" href="http://www.example.com/">
     -->
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">
+<%--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">--%>
+<%--    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">--%>
+<%--    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css">--%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/blue.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/infostyle.css">
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap/css/bootstrap.min.css">
@@ -130,22 +132,23 @@
         <header class="demo-drawer-header">
             <%-- <img src="images/user.jpg" class="demo-avatar">--%>
             <div class="demo-avatar-dropdown">
-                <h1>淘一淘</h1>
+                <h3>个人中心</h3>
                 <div class="mdl-layout-spacer"></div>
 
             </div>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/main"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>主页</a>
-            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/information"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>个人信息</a>
-            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/list"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>订单管理</a>
-            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/address"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>地址管理</a>
-            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/favorite"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>我的收藏</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/main">主页</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/information">个人信息</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/list">订单管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/address">地址管理</a>
+            <a class="mdl-navigation__link" href="${pageContext.request.contextPath}/info/favorite">我的收藏</a>
         </nav>
+        <p>© Copyright Reserved 手机商城</p>
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
-            <div class="content">
+            <div class="content" style="width: 100%">
                 <div class="module">
                     <div class="bd">
                         <div class="data">
@@ -153,7 +156,9 @@
                                 <c:forEach items="${pageInfo.list}" var="goods">
                                     <li class="data-item-li">
                                         <div class="to-big">
-                                            <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}"> <img src="/shopimage/${goods.imagePaths[0].path}" width="240px" height="240px" alt=""/>
+                                            <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}">
+                                                <img src="${pageContext.request.contextPath}/shopimage/1.jpg" alt="" width="240" height="240"/>
+<%--                                                <img src="/shopimage/${goods.imagePaths[0].path}" width="240px" height="240px" alt=""/>--%>
                                             </a>
                                         </div>
                                         <p class="text-right">

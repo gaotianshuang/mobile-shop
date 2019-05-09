@@ -292,18 +292,19 @@
         <c:if test="${!empty digGoods}">
             <div class="module">
                 <div class="hd">
-                    <h2>手机</h2>
+                    <h2>推荐</h2>
                     <hr>
                 </div>
-
                 <div class="bd">
                     <div class="data">
                         <ul>
                             <c:forEach items="${digGoods}" var="goods">
+
                                 <li class="data-item-li">
                                     <div class="to-big">
                                         <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}">
-                                        	<img src="http://localhost:8080/shop/shopimage/${goods.imagePaths[0].path}" alt="" width="200" height="200"/>
+                                            <img src="${pageContext.request.contextPath}/shopimage/1.jpg" alt="" width="200" height="200"/>
+<%--                                        	<img src="http://localhost:8080/shop/shopimage/${goods.imagePaths[0].path}" alt="" width="200" height="200"/>--%>
                                         </a>
                                     </div>
                                     <p class="text-right">

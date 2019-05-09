@@ -76,6 +76,9 @@
 	border: 1px solid #34BBF9;
 	border-radius: 4px;
 }
+.chat-name {
+    margin: 150px 10px;
+}
 
 /*.form-group {
 	width: 100%;

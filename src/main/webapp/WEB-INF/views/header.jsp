@@ -37,9 +37,6 @@
                     class="fa fa-shopping-cart" style="color: #F22E00"></i>
                 购物车
             </a></li>
-            <li><a href="${pageContext.request.contextPath}/info/favorite"> <i
-                    class="fa fa-star"></i> 收藏夹
-            </a></li>
             <li><a href="${pageContext.request.contextPath}/information"><i class="fa fa-user-circle" ></i>  个人信息</a></li>
             <li class="dropdown"><a class="a-color" href="${pageContext.request.contextPath}/info/list"
                                     class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -48,6 +45,8 @@
                 <ul class="dropdown-menu">
                     <li><a href="${pageContext.request.contextPath}/info/address">地址管理</a></li>
                     <li><a href="${pageContext.request.contextPath}/order">交易中</a></li>
+                    <li><a href="${pageContext.request.contextPath}/info/favorite"> 收藏夹
+                    </a></li>
                     <%--                            <li role="separator" class="divider"></li>--%>
                     <%--                            <li><a href="${pageContext.request.contextPath}/chatrobot">小淘</a></li>--%>
                 </ul></li>

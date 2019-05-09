@@ -145,6 +145,7 @@
 }
 
 p.text-right {
+	text-align: center;
 	margin-right: 5px;
 	margin-bottom: 3px;
 	margin-top: 3px;
@@ -161,6 +162,7 @@ p.text-right>a:hover {
 }
 
 div.text-right {
+	text-align: center;
 	margin-right: 5px;
 }
 

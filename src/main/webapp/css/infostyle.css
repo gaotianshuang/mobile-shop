@@ -58,8 +58,7 @@ html, body {
   -webkit-justify-content: flex-end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding: 16px;
-  height: 151px;
+    padding: 0px 10px 10px 40px
 }
 .demo-avatar-dropdown {
   display: -webkit-flex;
