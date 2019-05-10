@@ -83,7 +83,7 @@
                 var goodsId = $(this).attr("data-id");
                 //取消收藏
                 $.ajax({
-                    url:"/shop/deleteCollect",
+                    url:"${pageContext.request.contextPath}/deleteCollect/",
                     type:"POST",
                     data:{
                         goodsid:goodsId
