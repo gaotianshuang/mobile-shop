@@ -53,11 +53,13 @@
                                         		<input type="checkbox" id="wholeSelect">
                                         	</span>
                                         </th>
-                                        <%--<th class="product-thumbnail product-thumbnail-2"><span class="nobr"></span></th>--%>
+                                        <th class="product-thumbnail product-thumbnail-2"><span class="nobr">图片</span></th>
                                         <th class="product-name product-name_2"><span class="nobr">商品</span></th>
+                                        <th class="product-price"><span class="nobr">价格</span></th>
                                         <th class="product-price"><span class="nobr">价格</span></th>
                                         <th class="product-stock-stauts"><span class="nobr">数量 </span></th>
                                         <th class="product-add-to-cart"><span class="nobr">总价</span></th>
+                                        <th class="product-edit"><span class="nobr">操作</span></th>
                                     </tr>
                                     </thead>
                                     <c:forEach items="${shopcart}" var="goodsAndImage">
@@ -65,14 +67,14 @@
 											<tr>
 		                                        <td class="product-remove">
 		                                        	<span class="nobr">
-		                                        		<input type="checkbox" name="checkbox">
+		                                        		<input type="checkbox" name="checkbox" id="aa">
 		                                        	</span>
 		                                        </td>
-		                                        <%--<td class="product-thumbnail product-thumbnail-2">--%>
-		                                        	<%--<span class="nobr">--%>
-		                                        		<%--<img src="http://localhost:8080/shop/shopimage/${goodsAndImage.imagePaths}" width="100" height="100">--%>
-		                                        	<%--</span>--%>
-		                                        <%--</td>--%>
+		                                        <td class="product-thumbnail product-thumbnail-2">
+		                                        	<span class="nobr">
+		                                        		<img src="http://localhost:8080/shop/shopimage/${goodsAndImage.imagePaths}" width="100" height="100">
+		                                        	</span>
+		                                        </td>
 		                                        <td class="product-name product-name_2">
 		                                        	<span class="nobr">${goodsAndImage.goodsname}</span>
 		                                        </td>
@@ -85,6 +87,9 @@
 		                                        <td class="product-add-to-cart">
 		                                        	<span class="nobr">${goodsAndImage.price}</span>
 		                                        </td>
+                                                <td class="product-edit">
+                                                    <span class="nobr"><a href="#" style="color: red">删除</a></span></th>
+                                                </td>
 		                                    </tr>
 	                                   </tbody>
                                     </c:forEach>
@@ -144,15 +149,33 @@
 <div id="path" hidden>${pageContext.request.contextPath}</div>
 </body>
 <script type="text/javascript">
-	var wholeSelect=$('#wholeSelect');
-	wholeSelect.change(function (e) {
-	    var _this=$(this);
-	    //判断全选按钮是否选中
-	    if (_this.is(':checked')){//选中时的操作
-	        $('input[name="checkbox"]').prop("checked",true);
-	    }else{//未选中时的操作
-	        $('input[name="checkbox"]').prop('checked',false);
-	    }
-	});
-</script>
+    $('input[name="checkbox"]').change(function (e) {
+        var nameChecked = $('input[name="checkbox"]');
+        var i = 0;
+        nameChecked.each(function (item,index) {
+            // this.checked =  !this.checked;
+            if (this.checked) {
+                i++;
+            }
+        })
+        if (i == nameChecked.length) {
+            $('#wholeSelect').prop("checked", true);
+        } else {
+            $('#wholeSelect').prop("checked", false);
+        }
+    });
+
+    // var wholeSelect=$('#wholeSelect');
+	// wholeSelect.change(function (e) {
+	//     var _this=$(this);
+    //     //判断全选按钮是否选中
+	//     if (_this.is(':checked')){//选中时的操作
+    //             $('input[name="checkbox"]').prop("checked",true);
+    //
+	//     }else{//未选中时的操作
+	//         $('input[name="checkbox"]').prop('checked',false);
+	//     }
+	// });
+
+</script>;l
 </html>
