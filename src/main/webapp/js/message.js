@@ -1,5 +1,5 @@
 /**
- * Created by 文辉 on 2017/7/23.
+ * Created by Flying 209946269
  */
 $(document).ready(function () {
 
@@ -13,36 +13,36 @@ $(document).ready(function () {
 });
 
 $(document).on("click",".templatemo-delete-btn",function () {
-    var goodsname = $(this).parents("tr").find("td:eq(1)").text();
-    var goodsid = $(this).parents("tr").find("td:eq(0)").text();
+    var msgcontent = $(this).parents("tr").find("td:eq(1)").text();
+    // var goodsid = $(this).parents("tr").find("td:eq(0)").text();
     swal({
-            title: "确定删除" + goodsname + "吗？",
-            type: "warning",
-            showCancelButton: true,
-            cancelButtonText:"取消",
+            title: msgcontent,
+            // type: "success",
+            showCancelButton: false,
+            // cancelButtonText:"返回",
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "确定删除！",
-            closeOnConfirm: false,
+            confirmButtonText: "返回",
+            closeOnConfirm: true
         },
         function () {
             /*swal("删除！", "你的虚拟文件已经被删除。", "success");*/
-            $.ajax({
-                url: "/shop/admin/user/delete/" + goodsid,
-                type: "DELETE",
-                success:function (result) {
-                    swal(result.msg, "","success");
-                    to_page('/shop',currentPage);
-                },
-                error:function () {
-                    /*to_page('/shop',currentPage);*/
-                }
-            });
+            // $.ajax({
+            //     url: "/shop/admin/user/delete/" + goodsid,
+            //     type: "DELETE",
+            //     success:function (result) {
+            //         swal(result.msg, "","success");
+            //         to_page('/shop',currentPage);
+            //     },
+            //     error:function () {
+            //         /*to_page('/shop',currentPage);*/
+            //     }
+            // });
         });
 });
 
 function to_page(path, page) {
     $.ajax({
-        url: path + "/admin/user/showjson",
+        url: path + "/admin/message/showjson",
         data: "page=" + page,
         type: "get",
         success: function (result) {
@@ -63,19 +63,22 @@ function to_page(path, page) {
 
 function build_user_table(path,result) {
     $("#goodsinfo tbody").empty();
-    var goods = result.info.pageInfo.list;
-    $.each(goods, function (index,item) {
-        var userid = $("<td></td>").append(item.userid);
+    var chats = result.info.pageInfo.list;
+    // console.log(chats);
+    $.each(chats, function (index,item) {
+        var chatid = $("<td></td>").append(item.chatid);
+        var msgcontent = $("<td></td>").append(item.msgcontent);
         var username = $("<td></td>").append(item.username);
         var email = $("<td></td>").append(item.email);
         var telephone = $("<td></td>").append(item.telephone);
 
-        var deleteBtn = $("<button></button>").addClass("templatemo-delete-btn").append("删除");
+        var deleteBtn = $("<button></button>").addClass("templatemo-delete-btn").append("查看");
 
         var deleteTd = $("<td></td>").append(deleteBtn);
 
 
-        $("<tr></tr>").append(userid)
+        $("<tr></tr>").append(chatid)
+            .append(msgcontent)
             .append(username)
             .append(email)
             .append(telephone)

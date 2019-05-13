@@ -172,16 +172,15 @@ public class CartController {
         return Msg.success("查询成功").add("shopcart",goodsAndImage);
     }*/
 
-    @RequestMapping(value = "/deleteCart/{goodsid}", method = RequestMethod.DELETE)
-    @ResponseBody
-    public Msg deleteCart(@PathVariable("goodsid")Integer goodsid, HttpSession session) {
+    @RequestMapping(value = "/deleteCart", method = RequestMethod.GET)
+    public String deleteCart(Integer goodsid, HttpSession session) {
         User user = (User) session.getAttribute("user");
         if(user == null) {
-            return Msg.fail("请先登录");
+            return "redirect:/login";
         }
 
         shopCartService.deleteByKey(new ShopCartKey(user.getUserid(), goodsid));
-        return Msg.success("删除成功");
+        return "shopcart";
     }
 
     @RequestMapping("/update")

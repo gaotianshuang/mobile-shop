@@ -56,7 +56,6 @@
                                         <th class="product-thumbnail product-thumbnail-2"><span class="nobr">图片</span></th>
                                         <th class="product-name product-name_2"><span class="nobr">商品</span></th>
                                         <th class="product-price"><span class="nobr">价格</span></th>
-                                        <th class="product-price"><span class="nobr">价格</span></th>
                                         <th class="product-stock-stauts"><span class="nobr">数量 </span></th>
                                         <th class="product-add-to-cart"><span class="nobr">总价</span></th>
                                         <th class="product-edit"><span class="nobr">操作</span></th>
@@ -67,7 +66,7 @@
 											<tr>
 		                                        <td class="product-remove">
 		                                        	<span class="nobr">
-		                                        		<input type="checkbox" name="checkbox" id="aa">
+		                                        		<input type="checkbox" name="checkbox" id="aa" value="${goodsAndImage.goodsid}">
 		                                        	</span>
 		                                        </td>
 		                                        <td class="product-thumbnail product-thumbnail-2">
@@ -88,7 +87,7 @@
 		                                        	<span class="nobr">${goodsAndImage.price}</span>
 		                                        </td>
                                                 <td class="product-edit">
-                                                    <span class="nobr"><a href="#" style="color: red">删除</a></span></th>
+                                                    <span class="nobr"><a href="${pageContext.request.contextPath}/deleteCart?goodsid=${goodsAndImage.goodsid}" style="color: red">删除</a></span></th>
                                                 </td>
 		                                    </tr>
 	                                   </tbody>
@@ -134,7 +133,7 @@
                                         </tbody>
                                     </table> -->
                                     <div class="wc-proceed-to-checkout">
-                                        <a class="button_act button_act-tc confirm-orders" href="${pageContext.request.contextPath}/order">确认订单</a>
+                                        <a class="button_act button_act-tc confirm-orders">确认订单</a>
                                     </div>
                                 </div>
                             </div>
@@ -165,17 +164,45 @@
         }
     });
 
-    // var wholeSelect=$('#wholeSelect');
-	// wholeSelect.change(function (e) {
-	//     var _this=$(this);
-    //     //判断全选按钮是否选中
-	//     if (_this.is(':checked')){//选中时的操作
-    //             $('input[name="checkbox"]').prop("checked",true);
-    //
-	//     }else{//未选中时的操作
-	//         $('input[name="checkbox"]').prop('checked',false);
-	//     }
-	// });
+    var wholeSelect=$('#wholeSelect');
+	wholeSelect.change(function (e) {
+	    var _this=$(this);
+        //判断全选按钮是否选中
+	    if (_this.is(':checked')){//选中时的操作
+                $('input[name="checkbox"]').prop("checked",true);
+
+	    }else{//未选中时的操作
+	        $('input[name="checkbox"]').prop('checked',false);
+	    }
+	});
+    $('.confirm-orders').click(function(){
+        var checkVal = [];
+        var nameChecked = $('input[name="checkbox"]');
+        nameChecked.each(function() {
+            if ($(this).is(":checked")) {
+                var s= $(this).val();
+                checkVal.push(s);
+            }
+        });
+        // console.log(checkVal);
+
+        window.location.href = "${pageContext.request.contextPath}/order?ids=" + checkVal.join();
+
+        <%--$.ajax({--%>
+        <%--    url: "${pageContext.request.contextPath}/order", //把表单数据发送到ajax.jsp--%>
+        <%--    type: "POST",--%>
+        <%--    dataType: 'json',--%>
+        <%--    data: {--%>
+        <%--        ids: checkVal.join()--%>
+        <%--    },--%>
+        <%--    success: function (data) {--%>
+        <%--        // alert("success!"); //将返回的结果显示到ajaxDiv中--%>
+        <%--        window.location.href = "${pageContext.request.contextPath}/orderFinish";--%>
+        <%--    }, error: function (request) {--%>
+        <%--        alert("提交订单失败");--%>
+        <%--    }--%>
+        <%--});--%>
+    });
 
 </script>;l
 </html>

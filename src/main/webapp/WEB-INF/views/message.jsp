@@ -39,7 +39,7 @@
             <div class="row">
                 <nav class="templatemo-top-nav col-lg-12 col-md-12">
                     <ul class="text-uppercase">
-                        <li><a href="" class="active">所有用户</a></li>
+                        <li><a href="" class="active">所有留言</a></li>
                         <%--<li><a href="">Dashboard</a></li>
                         <li><a href="">Overview</a></li>
                         <li><a href="login.html">Sign in form</a></li>--%>
@@ -54,10 +54,11 @@
                         <thead>
                         <tr>
                             <td><a href="" class="white-text templatemo-sort-by">id<span class="caret"></span></a></td>
+                            <td><a href="" class="white-text templatemo-sort-by">留言内容<span class="caret"></span></a></td>
                             <td><a href="" class="white-text templatemo-sort-by">用户名<span class="caret"></span></a></td>
                             <td><a href="" class="white-text templatemo-sort-by">Email<span class="caret"></span></a></td>
                             <td><a href="" class="white-text templatemo-sort-by">联系电话<span class="caret"></span></a></td>
-                            <td>删除</td>
+                            <td>操作</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -137,6 +138,6 @@
 
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/templatemo-script.js"></script>      <!-- Templatemo Script -->
-<script src="${pageContext.request.contextPath}/js/userManage.js"></script>
+<script src="${pageContext.request.contextPath}/js/message.js"></script>
 </body>
 </html>

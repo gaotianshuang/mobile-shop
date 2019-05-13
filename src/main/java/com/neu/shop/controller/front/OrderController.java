@@ -7,14 +7,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class OrderController {
@@ -35,12 +34,20 @@ public class OrderController {
     @Autowired
     private ActivityService activityService;
 
-    @RequestMapping("/order")
-    public String showOrder(HttpSession session, Model model) {
+    @RequestMapping(value = "/order", method = RequestMethod.GET)
+//    @ResponseBody
+    public String showOrder(HttpSession session, Model model, String ids) {
 
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            return "redirect:/login";
+//            return "redirect:/login";
+        }
+
+        String[] idList = ids.split(",");
+        ArrayList<Integer> idsList = new ArrayList<Integer>();
+        // 拿到提交的商品列表的ids
+        for (String id: idList) {
+            idsList.add(Integer.parseInt(id));
         }
 
         //查询当前用户的收货地址
@@ -53,7 +60,7 @@ public class OrderController {
         //订单信息
         //获取当前用户的购物车信息
         ShopCartExample shopCartExample = new ShopCartExample();
-        shopCartExample.or().andUseridEqualTo(user.getUserid());
+        shopCartExample.or().andUseridEqualTo(user.getUserid()).andGoodsidIn(idsList);
         List<ShopCart> shopCart = shopCartService.selectByExample(shopCartExample);
 
         //获取购物车中的商品信息
@@ -94,7 +101,15 @@ public class OrderController {
         model.addAttribute("goodsAndImage", goodsAndImage);
 
         return "orderConfirm";
+//        return Msg.success("购买成功");
     }
+
+//    @RequestMapping("/orderConfirm")
+//    public String toOrderConfirm() {
+//        return "orderConfirm";
+//    }
+
+
 
     @RequestMapping("/orderFinish")
     @ResponseBody

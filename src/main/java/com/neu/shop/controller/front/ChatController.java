@@ -189,15 +189,25 @@ public class ChatController {
 
     @RequestMapping("/sendMessage")
     @ResponseBody
-    public Msg saveMessage(Chat chat) {
-//        System.out.println(chat.getMsgcontent());
+    public Msg saveMessage(HttpSession session, String msgcontent) {
+        User loginuser = (User) session.getAttribute("user");
+        Chat chat = new Chat();
+        chat.setMsgcontent(msgcontent);
+        chat.setSenduser(loginuser.getUserid());
         chat.setMsgtime(new Date());
+        chat.setReceiveuser(loginuser.getUserid());
         chatService.insertChatSelective(chat);
         return Msg.success("保存成功");
     }
 
     @RequestMapping("/chatrobot")
-    public String showChatRobot() {
+    public String showChatRobot(HttpSession session) {
+        User loginuser = (User) session.getAttribute("user");
+        if (loginuser == null) {
+            return "redirect:/login";
+        }
         return "chatrobot";
     }
+
+
 }

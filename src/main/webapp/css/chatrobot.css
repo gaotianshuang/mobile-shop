@@ -98,11 +98,8 @@
 	margin-top: 6%;
 	margin-left: 45%;
 }
-#input-tel{
-	width: 50%;
-}
 #input-message {
-	width: 50%;
+	width: 90%;
 }
 
 .send-div>input {

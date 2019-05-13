@@ -20,7 +20,8 @@
         <jsp:include page="header.jsp"/>
     </div>
     <div class="chat-div">
-        <form action="" method="post">
+<%--        <form action="${pageContext.request.contextPath}/sendMessage" method="post">--%>
+        <form>
         <div class="chat">
             <div class="col-md-6">
                 <img src="./image/login.png" alt="" width="640" height="400" style="margin-left:-40px;margin-top:30px;">
@@ -33,16 +34,11 @@
                     <div class="form-div">
                         <div class="form-inline">
                             <div class="form-group input-div">
-                                <label>联系方式:</label>
-                                <input class="form-control" id="input-tel" name ="tel" id="tel" />
-                            </div>
-                            <div class="form-group input-div">
-                                <label>内容:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
-                                <textarea class="form-control" name="message" id="input-message" rows="1"></textarea>
+                                <textarea class="form-control" name="msgcontent" id="input-message" rows="5" ></textarea>
                             </div>
                             <br/>
                             <div class="form-group send-div">
-                                <input class="form-control btn btn-primary " id="send-message" type="submit" value="发送">
+                                <input type="button" class="form-control btn btn-primary" id="send" value="发送">
                             </div>
                         </div>
                     </div>
@@ -54,3 +50,31 @@
 </div>
 </body>
 </html>
+<script>
+   $("#send").click(function () {
+       var param = {
+           msgcontent:$('#input-message').val()
+       };
+
+       $.ajax({
+           type:"post",
+           dataType:'json',
+           url:'${pageContext.request.contextPath}/sendMessage',
+           data: param,
+           success :function(res){
+               if(res.code == 100 ){
+                   alert("已经成功向商家留言，点击确定即将刷新页面！");
+                    <%--window.location.href = "${pageContext.request.contextPath}/main"--%>
+
+                   function test(){
+                       window.location.reload();
+                   }
+                   setInterval(test, 2000);
+               }else {
+                    alert("服务器错误，请重试！")
+               }
+
+           }
+       })
+   })
+</script>
