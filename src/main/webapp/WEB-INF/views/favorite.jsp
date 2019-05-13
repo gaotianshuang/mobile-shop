@@ -162,7 +162,7 @@
                                             </a>
                                         </div>
                                         <p class="text-right">
-                                            <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}">${goods.goodsname}</a>
+                                            <a href="${pageContext.request.contextPath}/detail?goodsid=${goods.goodsid}" style="color: #0f0f0f !important;">${goods.goodsname}</a>
                                         </p>
                                         <div class="text-right">
                                             <b>￥${goods.price}</b>
